@@ -68,12 +68,30 @@ class Hero extends BaseCharacter {
   }
 
   heal() {
-
-    this.hp +=30;
+    const heal =30;
+    this.hp +=heal;
     if (this.hp>=130){
       this.hp = 130;
     }
-    this.updateHtml(this.hpElement, this.hurtElement);
+    var _this = this;
+    var i = 1;
+
+    _this.id = setInterval(function() {
+      
+      if (i == 1) {
+          _this.element.getElementsByClassName("effect-image")[0].style.display = "block";
+          _this.element.getElementsByClassName("heal-text")[0].classList.add("healed");
+          _this.element.getElementsByClassName("heal-text")[0].textContent = heal;
+        }        
+        _this.element.getElementsByClassName("effect-image")[0].src = 'images/effect/heal/'+ i +'.png';
+        i++;
+      if (i > 8) {
+          _this.element.getElementsByClassName("effect-image")[0].style.display = "none";
+          _this.element.getElementsByClassName("heal-text")[0].classList.remove("healed");
+          _this.element.getElementsByClassName("heal-text")[0].textContent = "";
+          clearInterval(_this.id);
+        }
+    }, 50);
   }
 
   getHurt(damage) {
@@ -180,7 +198,7 @@ function heroHeal() {
     } else {
       finish();
     }
-  }, 1100);
+  }, 400);
 
     
 }
