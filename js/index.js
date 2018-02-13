@@ -149,8 +149,17 @@ function addSkillEvent() {
   }
 
 }
-addSkillEvent();
 
+function keyFunction() {
+  if (event.keyCode ==65){
+    heroAttack();
+  }
+  else if(event.keyCode == 68){
+    heroHeal();
+  }
+}
+addSkillEvent();
+document.onkeydown=keyFunction;
 function heroAttack() {
   document.getElementsByClassName("skill-block")[0].style.display = "none";
 
